@@ -1,0 +1,6 @@
+require("tcorer.keymaps.leader")
+require("tcorer.keymaps.window_navigation")
+require("tcorer.keymaps.text_movement")
+require("tcorer.keymaps.clipboard")
+require("tcorer.keymaps.find_next")
+require("tcorer.keymaps.explore")
