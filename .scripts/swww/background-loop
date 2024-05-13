@@ -1,0 +1,66 @@
+#!/bin/bash
+
+config_file="/tmp/swww/background_changer_config"
+lock_file="/tmp/swww/background_changer.lock"
+
+folder=$1
+delay=$2
+
+mkdir -p "$(dirname "$config_file")"
+mkdir -p "$(dirname "$lock_file")"
+
+# Create the config file if it doesn't exist
+if [ ! -f "$config_file" ]; then
+    echo "Default_Folder" > "$config_file"
+    echo "Default_Delay" >> "$config_file"
+fi
+
+cleanup() {
+    if [ $$ -eq $(cat "$lock_file") ]; then
+        echo "REMOVED LOCK FILE"
+        rm -f "$lock_file"
+    fi
+    exit
+}
+trap cleanup EXIT
+
+read_conf() {
+    folder=$(sed -n '1p' "$config_file")
+    delay=$(sed -n '2p' "$config_file")
+}
+
+write_conf() {
+    echo "$folder" > "$config_file"
+    echo "$delay" >> "$config_file"
+}
+
+if [ $# -eq 2 ]; then
+    if [ -f "$lock_file" ]; then
+        write_conf
+        echo "Changed args $folder $delay"
+        echo "Script is already running."
+        exit 1
+    else
+        write_conf
+        echo "Set args $folder $delay"
+        echo "$$"
+        echo "$$" > "$lock_file"
+    fi
+    read_conf
+else
+    echo "$0 <folder> <delay>"
+    exit 1
+fi
+
+change_background() {
+    ~/.scripts/swww/change-background $folder
+    #echo "Changing background..."
+}
+
+while true; do
+    read_conf
+    #test_data
+    change_background
+    sleep "$delay"
+done
+

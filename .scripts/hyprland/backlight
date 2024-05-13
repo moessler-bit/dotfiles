@@ -1,0 +1,7 @@
+#!/bin/bash
+STATE=$(cat /sys/class/leds/kbd_backlight/brightness)
+if [[ $STATE -eq "255" ]]; then
+    echo 0 > /sys/class/leds/kbd_backlight/brightness
+else
+    echo 255 > /sys/class/leds/kbd_backlight/brightness
+fi
