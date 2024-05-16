@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /usr/bin/env bash
 
 if tmux ls >/dev/null 2>/dev/null && [ -z "$TMUX" ] && [ -n "$XDG_CURRENT_DESKTOP" ]; then
     tmux a
