@@ -1,4 +1,4 @@
-local dap = require("dap")
+--[[local dap = require("dap")
 
 vim.keymap.set('n', '<F5>', function() dap.continue() end)
 vim.keymap.set('n', '<F10>', function() dap.step_over() end)
@@ -44,4 +44,4 @@ dap.listeners.before.event_terminated["dapui_config"] = function()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
-end
+end]]--

@@ -23,5 +23,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-require('telescope').extensions.dap.configurations()
+--require('telescope').extensions.dap.configurations()
 -- <C-t>jump back
