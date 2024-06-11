@@ -100,3 +100,4 @@ export PAGER='less'
 alias nv="nvim"
 ~/.scripts/tmux/autostart
 . "$HOME/.cargo/env"
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
