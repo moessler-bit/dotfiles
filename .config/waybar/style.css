@@ -51,7 +51,7 @@ window#waybar.hidden {
 #custom-power,
 #battery,
 #backlight,
-#pulseaudio,
+#wireplumber,
 #network,
 #clock,
 #tray {
@@ -107,7 +107,7 @@ window#waybar.hidden {
   background-color: #fab387;
 }
 
-#pulseaudio {
+#wireplumber {
   background-color: #f9e2af;
 }
 

@@ -14,7 +14,7 @@
         "tray",
         "memory",
         "network",
-        "pulseaudio",
+        "custom/wireplumber",
         "battery",
         "custom/power"
     ],
@@ -76,18 +76,10 @@
 	"interval": 5,
 	"nospacing": 1,
     },
-    "pulseaudio": {
-        "format": "{icon}",
-        "format-bluetooth": "󰂰",
-        "nospacing": 1,
-        "tooltip-format": "Volume : {volume}%",
-        "format-muted": "󰝟",
-        "format-icons": {
-            "headphone": "",
-            "default": ["󰖀","󰕾",""]
-        },
-        "on-click": "pamixer -t",
-        "scroll-step": 1
+    "wireplumber": {
+        "format": "{volume}%",
+        "format-muted": "",
+        "exec": "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ print ($2 * 100) }'"
     },
     "custom/logo": {
         "format": " \uf323 ",

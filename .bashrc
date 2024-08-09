@@ -101,3 +101,9 @@ alias nv="nvim"
 ~/.scripts/tmux/autostart
 . "$HOME/.cargo/env"
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
+# Created by `pipx` on 2024-08-01 08:54:45
+export PATH="$PATH:/home/l466l/.local/bin"
+printf "\e[30:100H\e[2J"
+alias x='printf "\e[30:100H\e[2J"'
+set _JAVA_AWT_WM_NONREPARENTING=1
