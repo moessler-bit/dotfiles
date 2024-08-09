@@ -36,10 +36,10 @@
 *.color7:       #707880
 *.color15:      #c5c8c6
 
-URxvt.font: xft:JetBrains Mono:size=32
-URxvt.boldFont: xft:JetBrains Mono:bold:size=32
-URxvt.italicFont: xft:JetBrains Mono:italic:size=32
-URxvt.boldItalicfont: xft:JetBrains Mono:bold:italic:size=32
+URxvt.font: xft:JetBrains Mono:size=24
+URxvt.boldFont: xft:JetBrains Mono:style=Bold:size=24
+URxvt.italicFont: xft:JetBrains Mono:style:=Italic:size=24
+URxvt.boldItalicfont: xft:JetBrains Mono:style=Bold Italic:size=24
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
