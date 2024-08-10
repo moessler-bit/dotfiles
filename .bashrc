@@ -105,4 +105,4 @@ alias nv="nvim"
 # Created by `pipx` on 2024-08-01 08:54:45
 export PATH="$PATH:/home/l466l/.local/bin"
 set _JAVA_AWT_WM_NONREPARENTING=1
-export PS1='$([ $? -ne 0 ] && echo "\[\033[0;31m\]")[\u@\h \W]\$ \[\033[0m\]'
+export PS1='$(RETVAL=$?; [ $RETVAL -ne 0 ] && echo "\[\033[0;31m\][$RETVAL]")[\u@\h \W]\$ \[\033[0m\]'
