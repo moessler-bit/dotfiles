@@ -36,10 +36,21 @@
 *.color7:       #707880
 *.color15:      #c5c8c6
 
-URxvt.font: xft:JetBrains Mono:size=24
-URxvt.boldFont: xft:JetBrains Mono:style=Bold:size=24
-URxvt.italicFont: xft:JetBrains Mono:style:=Italic:size=24
-URxvt.boldItalicfont: xft:JetBrains Mono:style=Bold Italic:size=24
+URxvt.font: xft:JetBrainsMono Nerd Font Mono:size=24:style=Regular,xft:Symbols Nerd Font Mono:size=24
+URxvt.italicFont: xft:JetBrainsMono Nerd Font Mono:size=24:style=Italic,xft:Symbols Nerd Font Mono:size=24
+URxvt.boldFont: xft:JetBrainsMono Nerd Font Mono:size=24:style=Bold,xft:Symbols Nerd Font Mono:size=24
+URxvt.boldItalicFont: xft:JetBrainsMono Nerd Font Mono:size=24:style=Bold Italic,xft:Symbols Nerd Font Mono:size=24
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+Xft.autohint:   false
+Xft.lcdfilter:  lcddefault
+!URxvt.font: xft:Inconsolata Nerd Font:size=24:hinting=true
+!URxvt.italicFont: xft:Inconsolata Nerd Font:size=24:style=Italic:hinting=true
+!URxvt.boldFont: xft:Inconsolata Nerd Font:size=24:style=Bold:hinting=true
+!URxvt.boldItalicFont: xft:Inconsolata Nerd Font:size=24:style=Bold Italic:hinting=true
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
@@ -62,15 +73,15 @@ URxvt.keysym.Control-Right: \033[1;5C
 URxvt.keysym.Control-Left: \033[1;5D
 
 !! Copy Paste & Other Extensions
-URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+!! URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
 URxvt.copyCommand: xclip -i -selection clipboard
 URxvt.pasteCommand: xclip -o -selection clipboard
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-s: perl:keyboard-select:search
-URxvt.keysym.M-u: perl:url-select:select_next
+!! URxvt.keysym.Control-Shift-c: perl:clipboard:copy
+!! URxvt.keysym.Control-Shift-v: perl:clipboard:paste
+!! URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+!! URxvt.keysym.M-Escape: perl:keyboard-select:activate
+!! URxvt.keysym.M-s: perl:keyboard-select:search
+!! URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.urlLauncher: firefox
 URxvt.underlineURLs: true
 URxvt.urlButton: 1
