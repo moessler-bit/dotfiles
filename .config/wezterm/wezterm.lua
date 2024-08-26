@@ -13,5 +13,12 @@ config.window_padding = {
 	bottom = 0,
 }
 config.font_size = 32.0
+config.window_background_opacity = 1.0
+config.color_scheme = 'Tokyo Night Storm'
+config.color_schemes = {
+	["Tokyo Night Storm"] = {
+		background = '#001',
+	}
+}
 
 return config
