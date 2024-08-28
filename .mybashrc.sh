@@ -8,15 +8,16 @@ export PS1='$(RETVAL=$?; [ $RETVAL -ne 0 ] && echo "\[\033[0;31m\][$RETVAL]")[\u
 
 # open last saved dir
 if [[ -f "$HOME/.predir" ]]; then
-	cd $(tail -n1 "$HOME/.predir") || return
+	cd $(tail -n1 "$HOME/.predir") > /dev/null 2>&1
 fi
 
 # save dir
 sd(){
 	pwd >> "$HOME/.predir"
+	perl -i -ne 'print if !$seen{$_}++' "$HOME/.predir"
 }
 
-# open dir
-od(){
+# get dir
+gd(){
 	[[ -f "$HOME/.predir" ]] && cd $(cat "$HOME/.predir" | fzf)
 }
