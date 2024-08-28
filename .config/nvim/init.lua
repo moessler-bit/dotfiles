@@ -89,7 +89,7 @@ vim.keymap.set('n', '<leader>r', ':!cargo run<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', '<C-h>', vim.diagnostic.open_float, { desc = 'Open float [H]over diagnostic' })
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Open float [H]over diagnostic' })
 -- already set ]d [d:
 -- vim.keymap.set('n', 'gn', function ()
 --   vim.diagnostic.jump({ count = 1 })
@@ -735,9 +735,16 @@ require('lazy').setup({
       vim.cmd.colorscheme 'tokyonight-moon'
 
       -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
       -- transparent normal bg
       vim.cmd.hi 'Normal guibg=none'
+      vim.cmd.hi 'NormalNC guibg=none'
+      vim.cmd.hi 'CursorLineSign guibg=none'
+      vim.cmd.hi 'TelescopeNormal guibg=none'
+      vim.cmd.hi 'TelescopeBorder guibg=none'
+      vim.cmd.hi 'TelescopePromptTitle guibg=none'
+      vim.cmd.hi 'TelescopePromptBorder guibg=none'
+      vim.cmd.hi 'SignColumn guibg=none'
     end,
   },
 
