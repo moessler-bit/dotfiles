@@ -117,6 +117,10 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioMute,		spawn, SHCMD("pactl set-sink-mute 0 toggle") },
 	{ 0, XF86XK_AudioLowerVolume,	spawn, SHCMD("pactl set-sink-volume 0 -1%") },
 	{ 0, XF86XK_AudioRaiseVolume,	spawn, SHCMD("pactl set-sink-volume 0 +1%") },
+	{ 0, XF86XK_AudioPause,		spawn, {.v = medplaypausecmd } },
+	{ 0, XF86XK_AudioPlay,		spawn, {.v = medplaypausecmd } },
+	{ 0, XF86XK_AudioPrev,		spawn, {.v = medprevcmd } },
+	{ 0, XF86XK_AudioNext,		spawn, {.v = mednextcmd } },
 };
 
 /* button definitions */
