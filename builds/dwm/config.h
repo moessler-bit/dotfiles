@@ -61,8 +61,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 //static const char *termcmd[]        = { "urxvtc", NULL };
 static const char *termcmd[]        = { "wezterm", NULL };
-static const char *lock_suspencmd[] = { "slock", "systemctl", "suspend", NULL };
-static const char *lockcmd[]        = { "slock", NULL };
+//static const char *lock_suspencmd[] = { "slock", "systemctl", "suspend", NULL };
+//static const char *lockcmd[]        = { "slock", NULL };
 static const char *poweroffcmd[]    = { "poweroff", NULL };
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
@@ -103,18 +103,20 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
-	{ MODKEY|ControlMask,           XK_l,      spawn,          {.v = lock_suspencmd } },
+	//{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("pactl set-sink-mute 0 true && slock") },
+	//{ MODKEY|ControlMask,           XK_l,      spawn,          {.v = lock_suspencmd } },
+	{ MODKEY|ControlMask,             XK_l,      spawn,          SHCMD("pactl set-sink-mute 0 true && slock systemctl suspend") },
 	{ MODKEY|ControlMask,           XK_p,      spawn,          {.v = poweroffcmd } },
 	/* Keybindings for Media play/pause/next/previous */
 	{ MODKEY, XF86XK_AudioLowerVolume      , spawn, {.v = medplaypausecmd } },
 	{ MODKEY, XF86XK_AudioMute             , spawn, {.v = medprevcmd } },
 	{ MODKEY, XF86XK_AudioRaiseVolume      , spawn, {.v = mednextcmd } },
-	{ 0, XF86XK_MonBrightnessDown,	spawn, SHCMD("xbacklight -dec 5)") },
-	{ 0, XF86XK_MonBrightnessUp,	spawn, SHCMD("xbacklight -inc 5)") },
+	{ 0, XF86XK_MonBrightnessDown,	spawn, SHCMD("brightnessctl set 5%-)") },
+	{ 0, XF86XK_MonBrightnessUp,	spawn, SHCMD("brightnessctl set 5%+)") },
 	{ 0, XF86XK_AudioMute,		spawn, SHCMD("pactl set-sink-mute 0 toggle") },
-	{ 0, XF86XK_AudioLowerVolume,	spawn, SHCMD("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -1%") },
-	{ 0, XF86XK_AudioRaiseVolume,	spawn, SHCMD("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +1%") },
+	{ 0, XF86XK_AudioLowerVolume,	spawn, SHCMD("pactl set-sink-volume 0 -1%") },
+	{ 0, XF86XK_AudioRaiseVolume,	spawn, SHCMD("pactl set-sink-volume 0 +1%") },
 };
 
 /* button definitions */
