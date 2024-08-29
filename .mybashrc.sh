@@ -14,7 +14,7 @@ fi
 # save dir
 sd(){
 	pwd >> "$HOME/.predir"
-	perl -i -ne 'print if !$seen{$_}++' "$HOME/.predir"
+	perl -e 'my $file = shift; open my $fh, "<", $file or die "Cannot open $file: $!"; my @lines = <$fh>; close $fh; open my $out, ">", $file or die "Cannot write to $file: $!"; my %seen; print $out reverse grep { !$seen{$_}++ } reverse @lines; close $out;' "$HOME/.predir"
 }
 
 # get dir
