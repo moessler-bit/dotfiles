@@ -19,5 +19,10 @@ sd(){
 
 # get dir
 gd(){
-	[[ -f "$HOME/.predir" ]] && cd $(cat "$HOME/.predir" | fzf)
+	[[ -f "$HOME/.predir" ]] && cd $(cat "$HOME/.predir" | fzf -i)
+}
+
+# find dir
+fid(){
+	cd $(find -maxdepth 3 -type d | fzf -i)
 }
