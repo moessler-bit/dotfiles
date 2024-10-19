@@ -12,14 +12,46 @@ if [[ -f "$HOME/.predir" ]]; then
 fi
 
 # save dir
-sd(){
-	pwd >> "$HOME/.predir"
-	perl -e 'my $file = shift; open my $fh, "<", $file or die "Cannot open $file: $!"; my @lines = <$fh>; close $fh; open my $out, ">", $file or die "Cannot write to $file: $!"; my %seen; print $out reverse grep { !$seen{$_}++ } reverse @lines; close $out;' "$HOME/.predir"
-}
+#sd(){
+#	pwd >> "$HOME/.predir"
+#	perl -e 'my $file = shift; open my $fh, "<", $file or die "Cannot open $file: $!"; my @lines = <$fh>; close $fh; open my $out, ">", $file or die "Cannot write to $file: $!"; my %seen; print $out reverse grep { !$seen{$_}++ } reverse @lines; close $out;' "$HOME/.predir"
+#}
 
 # get dir
-gd(){
-	[[ -f "$HOME/.predir" ]] && cd $(cat "$HOME/.predir" | fzf -i)
+#gd(){
+#	[[ -f "$HOME/.predir" ]] && cd $(cat "$HOME/.predir" | fzf -i)
+#}
+
+# Save the current directory to a history file
+sd() {
+    # Append the current working directory (pwd) to the history file at $HOME/.predir
+    pwd >> "$HOME/.predir"
+    
+    # Use Perl to remove duplicate entries while maintaining the order
+    perl -e '
+        my $file = shift; 
+        open my $fh, "<", $file or die "Cannot open $file: $!"; 
+        my @lines = <$fh>; 
+        close $fh; 
+        open my $out, ">", $file or die "Cannot write to $file: $!"; 
+        my %seen; 
+        print $out reverse grep { !$seen{$_}++ } reverse @lines; 
+        close $out;
+    ' "$HOME/.predir"
+}
+
+# Retrieve a directory from history and change to it
+gd() {
+    # Check if the history file exists
+    if [[ -f "$HOME/.predir" ]]; then
+        # Use fzf (fuzzy finder) to interactively select a directory from the history
+        selected_dir=$(cat "$HOME/.predir" | fzf -i)
+        
+        # If a directory is selected (not empty), change to that directory
+        if [[ -n "$selected_dir" ]]; then
+            cd "$selected_dir" && sd # Change to the selected directory and call sd to save it to the history
+        fi
+    fi
 }
 
 # find dir

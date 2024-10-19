@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 
 --config.color_scheme = 'Batman'
 --config.font = wezterm.font 'JetBrainsMono'
-config.font = wezterm.font_with_fallback({ "Iosevka Custom", "Noto Color Emoji" })
+config.font = wezterm.font_with_fallback({ "JetBrainsMono", "Noto Color Emoji" })
 config.enable_tab_bar = false
 config.window_padding = {
 	left = 0,
