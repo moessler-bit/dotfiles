@@ -1,0 +1,127 @@
+(defvar
+  tap-timeout   150
+  hold-timeout  150
+  tt $tap-timeout
+  ht $hold-timeout
+)
+
+(defalias
+	cw	(caps-word 2000)
+)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cw  a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+
+(deflayer qwerty
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  _    a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+#|
+(deflayer qwerty_de
+  @grl    1       2       3       4       5       6       7       8       9       0       sharp   acute   backspace
+  tab     q       w       e       r       t       y       u       i       o       p       u_diaeresis plus    enter
+  _       a       s       d       f       g       h       j       k       l       o_diaeresis a_diaeresis number_sign
+  lshift  z       x       c       v       b       n       m       comma   dot     minus   rshift
+  lctrl   lmeta   lalt    space   ralt    rmet   rctrl
+)
+|#
+
+(deflayer dvorak
+  @grl 1    2    3    4    5    6    7    8    9    0    [    ]    bspc
+  tab  '    ,    .    p    y    f    g    c    r    l    /    =    \
+  _    a    o    e    u    i    d    h    t    n    s    -    ret
+  lsft ;    q    j    k    x    b    m    w    v    z    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(defalias
+  ;; tap: backtick (grave), hold: toggle layer-switching layer while held
+  grl (tap-hold $tt $ht grv (layer-toggle layers))
+
+  ;; layer-switch changes the base layer.
+  dvk (layer-switch dvorak)
+  qwr (layer-switch qwerty)
+  ;; qde (layer-switch qwerty_de)
+  sql (layer-switch sql_layout)
+  ;;ip (layer-switch ip_layout)
+
+  ;; tap for capslk, hold for lctl
+  ;; cap (tap-hold $tt $ht caps lctl)
+)
+
+
+
+(deflayer layers
+  _    @qwr _    @sql @dvk _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              lrld           _    _    _
+)
+
+(defalias
+	sel (tap-hold $tt $ht s (macro S-s S-e S-l S-e S-c S-t))
+	frm (tap-hold $tt $ht f (multi lsft f r o m))
+	whr (tap-hold $tt $ht w (macro S-w S-h S-e S-r S-e))
+	lmt (tap-hold $tt $ht l (macro S-l S-i S-m S-i S-t))
+	grp (tap-hold $tt $ht g (multi lsft g r o u p spc b y))
+	on (tap-hold $tt $ht o (multi lsft o n))
+	jn (tap-hold $tt $ht j (multi lsft j o i n))
+)
+
+(deflayer sql_layout
+  @grl _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    @whr _    _    _    _    _    _    @on  _    _    _    _
+  _    _    @sel _    @frm @grp _    @jn  _    @lmt _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
+
+
+#|(deflayer layers
+  _    @qwr @dvk @ip  _    _    _    _    _    _    _    _    _    lrld
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
+
+;; Define aliases for the macros to type IP addresses and localhost
+(defalias
+: S-;
+1 1
+2 2
+0 0
+7 7
+
+  ;; Macros for typing the required addresses
+  l4  (macro @1 @2 @7 . @0 . @0 . @1)  ;; IPv4 localhost (127.0.0.1)
+  ll  (macro l o c a l h o s t);; General localhost
+  l6  (macro @: @: @1)        ;; IPv6 localhost (::1)
+  
+  ;; Define a prefix alias for 'l' to handle sequences
+  prefix-l (prefix
+            "4" l4
+            "l" ll
+            "6" l6)
+)
+
+;; Define the main QWERTY layer with the prefix key
+(deflayer ip_layout
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    prefix-l  ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+|#
